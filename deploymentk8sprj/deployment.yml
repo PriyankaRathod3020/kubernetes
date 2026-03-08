@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxdeployment
+  namespace: ndeploy  
+  labels:
+    tier: nginxapp
+
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   tier: nginxapp  
+
+ template:
+  metadata:
+    namespace: ndeploy 
+    labels:
+     tier: nginxapp
+  spec:    
+   containers:
+    - name: nginxcontainer
+      image: nginx:latest
+      ports:
+       - containerPort: 80    
