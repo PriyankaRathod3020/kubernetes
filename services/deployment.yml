@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonappdeployment
+  namespace: ndeploy
+  labels:
+     tier: pythonapp
+
+spec:
+ replicas: 3
+ selector:
+  matchLabels: 
+   tier: pythonapp
+
+ template:
+   metadata:
+       namespace: ndeploy
+       labels:
+         tier: pythonapp
+   
+   spec:
+     containers:
+      - name: pythonappcontainer
+        image: priyankarathod3020/python_app
+        ports:
+         - containerPort: 5000     
+
