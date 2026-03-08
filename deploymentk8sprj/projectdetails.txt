@@ -1,0 +1,4 @@
+1. create custom namespace by using below command
+     kubectl create namespace namespace_name
+2. create a deployment file to create replicas and maintain the state
+ 
