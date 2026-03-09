@@ -1,0 +1,4 @@
+Services
+1. ClusterIP - It is used to communicate within the cluster. If we want to access the image/container outside the cluster for local testing we can user port-forwading.
+2. NodePort - It is used to communicate outside the cluster by using a specific port. But this service is not generally used due to security issues.
+3. LoadBalancer - It is used to communicate outside the cluster. Mainly this service is used to access the pod outside the cluster.
