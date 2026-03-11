@@ -1,0 +1,3 @@
+Created pv and added storageClassName = Manual . because creating the pv in local
+Created pvc and added storageClassName = Manual . because creating the pv in local
+created pod. used the affinity block to connect the worker nodes pv to the master nodes pod. the local storage was created in worker node
