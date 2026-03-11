@@ -1,0 +1,3 @@
+1. create configmaps file to change the configuration using volume mount
+2. create secret file to give password for the container secretly. used "stringData" instead of "data" to pass the string value as password for mysql
+3. create a deployment file to create a container using both configmaps and secret file
