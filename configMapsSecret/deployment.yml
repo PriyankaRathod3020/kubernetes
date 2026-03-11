@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deploy
+  namespace: ndeploy
+  labels:
+    app: mysql-label
+
+spec:
+  
+  replicas: 1
+  selector:
+   matchLabels:
+     app: mysql-label
+
+  template:
+    metadata:
+      namespace: ndeploy 
+      labels:
+       app: mysql-label
+
+    spec:
+      containers:
+        - name: mysql-app
+          image: mysql:8.0
+          ports:
+           - containerPort: 3306
+          env:
+           - name: MYSQL_ROOT_PASSWORD
+             valueFrom:
+               secretKeyRef:
+                   name: mysql-secret
+                   key: password
+
+
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/mysql/conf.d/custom-mysql.cnf
+              subPath: custom-mysql.cnf
+            - name: mysql-storage
+              mountPath: /var/lib/mysql      
+
+      volumes:
+        - name: config-volume
+          configMap:
+           name: mysql-config
+        - name: mysql-storage
+          emptyDir: {}        
+
